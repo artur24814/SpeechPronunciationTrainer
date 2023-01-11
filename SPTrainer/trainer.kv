@@ -1,0 +1,71 @@
+<Trainer>:
+    speak_btn: speak_btn
+    translate_btn: translate_btn
+    rec_btn: rec_btn
+    stop_btn: stop_btn
+    orientation: 'vertical'
+    padding: 10
+    spacing: 7
+
+    Label:
+        size_hint_y: .1
+        text: 'Put here your train text'
+        font_size: self.height * .6
+
+    TextInput:
+        size_hint_y: .3
+        multiline: True
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: .1
+        Button:
+            id: speak_btn
+            text: 'speak'
+            font_size: speak_btn.height * .7
+            Image:
+                source: 'img/voice.png'
+                center_x: self.parent.center_x / 2
+                center_y: self.parent.center_y
+        Button:
+            id: translate_btn
+            text: 'Translate'
+            font_size: speak_btn.height * .7
+            Image:
+                source: 'img/translate.png'
+                center_x: self.parent.center_x / 1.3
+                center_y: self.parent.center_y
+
+    Label:
+        size_hint_y: .1
+        text: 'Your Result'
+        font_size: self.height * .6
+
+    TextInput:
+        size_hint_y: .3
+        disabled: True
+        multiline: True
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: .1
+        Button:
+            id: rec_btn
+            text: 'REC'
+            font_size: speak_btn.height * .7
+            Image:
+                source: 'img/micro.png'
+                size_hint: self.height * .2, self.height * .2
+                allow_stretch: True
+                keep_ratio: False
+                center_x: self.parent.center_x / 2
+                center_y: self.parent.center_y
+        Button:
+            id: stop_btn
+            text: 'Stop'
+            font_size: speak_btn.height * .7
+            Image:
+                source: 'img/stop.png'
+                center_x: self.parent.center_x / 1.3
+                center_y: self.parent.center_y
+        Button:
+            text: 'try again'
