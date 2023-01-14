@@ -2,7 +2,7 @@ import pyttsx3
 from googletrans import Translator
 
 from kivy.uix.textinput import TextInput
-
+from kivy.uix.label import Label
 
 import speech_recognition
 import sounddevice
@@ -42,24 +42,27 @@ class SpeachManager:
             ResultTrans.content = TextInput(text=translation.text)
             ResultTrans().open()
 
-    def record(self, text_out):
+    def record(self, text_in, text_out, ResultTrans, ResultLabel):
         # try recognizing the speech in the recording
         # if a RequestError or UnknownValueError exception is caught,
         try:
             #open microphone
-            with self.mic as mic:
-                self.recognition.adjust_for_ambient_noise(mic)
-                print('Say ...')
-                text_out.text += 'Say....'
-                audio = self.recognition.listen(mic, timeout = 4)
-            print('ok, Try to recognize')
-            #recognize text
-            text = self.recognition.recognize_google(audio)
-            print('ok, I understand')
-            text = text.lower()
-            print(text)
-            text_out.text = text
-            return text
+            result = self.check_answer(text_in, text_out)
+            ResultTrans.content = ResultLabel(text=result)
+            ResultTrans.title = 'Result'
+            ResultTrans().open()
+            # with self.mic as mic:
+            #     self.recognition.adjust_for_ambient_noise(mic)
+            #     print('Say ...')
+            #     audio = self.recognition.listen(mic, timeout = 4)
+            # print('ok, Try to recognize')
+            # #recognize text
+            # text = self.recognition.recognize_google(audio)
+            # print('ok, I understand')
+            # text = text.lower()
+            # print(text)
+            # text_out.text = text
+            # return text
 
         except speech_recognition.UnknownValueError:
             text_out.text = "Oops! Didn't catch that"
@@ -72,5 +75,24 @@ class SpeachManager:
         if text != '':
             self.engine.say(text)
             self.engine.runAndWait()
+
+    def check_answer(self, textIn, textOut):
+        list_wordsIn = textIn.text.lower().split(' ')
+        list_wordsOut = textOut.text.lower().split(' ')
+        result = []
+        for word in list_wordsIn:
+            if word in list_wordsOut:
+                result.append(f'[color=#1de705]{word}[/color]')
+            else:
+                result.append(f'[color=#e71a05]{word}[/color]')
+            list_wordsIn.remove(word)
+        return ' '.join(result)
+
+'''
+Python is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation.
+Python is dynamically-typed and garbage-collected. It supports multiple programming paradigms, including structured (particularly procedural), object-oriented and functional programming. It is often described as a "batteries included" language due to its comprehensive standard library
+'''
+
+
 
 
