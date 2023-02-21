@@ -6,7 +6,7 @@
 
 ## Contents
  * <a href="#info"><strong>Info</strong></a><p>Information about the resources used in this project</p>
- * <a href="#SpeechPronunciationTrainer"><strong>Gim Manager</strong></a><p>Mobile app to listen text in english and train your pronunciation. </p>
+ * <a href="#SpeechPronunciationTrainer"><strong>Speech Pronunciation Trainer</strong></a><p>Mobile app to listen text in english and train your pronunciation. </p>
  * <a href="#clone_project"><strong>Clone and Run Project</strong></a><p>how run projects in your computer or in telephone</p>
 
 <hr>
