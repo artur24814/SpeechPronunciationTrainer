@@ -8,22 +8,23 @@ import speech_recognition
 import sounddevice
 recognition = speech_recognition.Recognizer()
 
+"""
+example script for using in simple python code
+while True:
+    try:
+        with speech_recognition.Microphone() as mic:
+            recognition.adjust_for_ambient_noise(mic, duration=0.2)
+            print('Say ...')
+            audio = recognition.listen(mic)
+        text = recognition.recognize_google(audio)
+        text = text.lower()
+        print(f'You say {text}')
 
-# while True:
-#     try:
-#         with speech_recognition.Microphone() as mic:
-#             recognition.adjust_for_ambient_noise(mic, duration=0.2)
-#             print('Say ...')
-#             audio = recognition.listen(mic)
-#         text = recognition.recognize_google(audio)
-#         text = text.lower()
-#         print(f'You say {text}')
-#
-#     except speech_recognition.UnknownValueError:
-#         recognition = speech_recognition.Recognizer()
-#         print('Error')
-#         continue
-
+    except speech_recognition.UnknownValueError:
+        recognition = speech_recognition.Recognizer()
+        print('Error')
+        continue
+"""
 
 class SpeachManager:
 
@@ -51,18 +52,18 @@ class SpeachManager:
             ResultTrans.content = ResultLabel(text=result)
             ResultTrans.title = 'Result'
             ResultTrans().open()
-            # with self.mic as mic:
-            #     self.recognition.adjust_for_ambient_noise(mic)
-            #     print('Say ...')
-            #     audio = self.recognition.listen(mic, timeout = 4)
-            # print('ok, Try to recognize')
-            # #recognize text
-            # text = self.recognition.recognize_google(audio)
-            # print('ok, I understand')
-            # text = text.lower()
-            # print(text)
-            # text_out.text = text
-            # return text
+            with self.mic as mic:
+                self.recognition.adjust_for_ambient_noise(mic)
+                print('Say ...')
+                audio = self.recognition.listen(mic, timeout = 4)
+            print('ok, Try to recognize')
+            #recognize text
+            text = self.recognition.recognize_google(audio)
+            print('ok, I understand')
+            text = text.lower()
+            print(text)
+            text_out.text = text
+            return text
 
         except speech_recognition.UnknownValueError:
             text_out.text = "Oops! Didn't catch that"
@@ -88,10 +89,6 @@ class SpeachManager:
             list_wordsIn.remove(word)
         return ' '.join(result)
 
-'''
-Python is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation.
-Python is dynamically-typed and garbage-collected. It supports multiple programming paradigms, including structured (particularly procedural), object-oriented and functional programming. It is often described as a "batteries included" language due to its comprehensive standard library
-'''
 
 
 
